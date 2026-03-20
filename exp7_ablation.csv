@@ -1,0 +1,8 @@
+Ablation,Delta_Cyber_Peak,Delta_CBRN_Peak,Delta_Pathways
+(a) No delays,-97.5%,-5.0%,-95.6%
+(b) No inst. response,+0.9%,+8.1%,-95.6%
+(c) No access control,+22.6%,+509.8%,-95.6%
+(d) No social paths,-92.3%,-31.1%,-98.9%
+(e) No feedback,-24.2%,+8.1%,-95.6%
+(f) No cross-domain,-9.0%,-13.7%,-98.9%
+(g) No disinfo coupling,-9.0%,-13.7%,-95.6%

@@ -1,0 +1,2 @@
+method,peak_cyber_mean,peak_cyber_sd,peak_cbrn_mean,peak_cbrn_sd,peak_rogue_mean,peak_rogue_sd,peak_loss_control_mean,peak_loss_control_sd,min_cbf_margin_mean,cbf_violation_rate,alloc_cyber,alloc_cbrn,alloc_epistemic,alloc_governance,alloc_autonomy
+Frozen POMG-DSD vs adapted adversary,0.18000000715255737,0.0,0.3496001064777374,0.012469343841075897,0.7402293086051941,0.1609458029270172,0.8123051524162292,0.07781989127397537,0.6332391500473022,0.09375,0.17190666496753693,0.3263426125049591,0.14820994436740875,0.17547424137592316,0.17806655168533325

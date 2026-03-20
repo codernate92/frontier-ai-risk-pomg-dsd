@@ -1,0 +1,178 @@
+{
+  "exp1": {
+    "composite_full": 0.7603731327134876,
+    "ratio": 2.863606424268855
+  },
+  "exp2": {
+    "agg_node": 0.599569198028008,
+    "agg_edge": 0.8966559230930748,
+    "agg_sign": 0.5291429455369847
+  },
+  "exp3": {
+    "top_bc_node": "Trust_Erosion",
+    "top_bc_val": 0.2220059700842131,
+    "n_supergraph_nodes": 95,
+    "n_supergraph_edges": 214
+  },
+  "exp4": {
+    "baseline_peak": 2067.828804187513,
+    "best_intervention": "(f) Access+Safeguard",
+    "best_irr": 40.24913957764645,
+    "mc_mean": 1833.3350285602091,
+    "mc_sd": 1163.8959326090144,
+    "mc_95ci": [
+      284.1466556074852,
+      4527.136634112346
+    ],
+    "mc_skewness": 1.0769963956473139,
+    "empirical_anchors": {
+      "catalog_version": "2026.03.09",
+      "date_released": "2026-03-09T19:46:11.6972Z",
+      "count": 1539,
+      "start_date": "2025-03-10",
+      "end_date": "2026-03-09",
+      "weekly_additions_mean": 4.716981132075472,
+      "weekly_additions_median": 4.0,
+      "weekly_additions_max": 13,
+      "weekly_backlog_mean": 13.150943396226415,
+      "weekly_backlog_max": 24,
+      "due_days_median": 21.0,
+      "due_days_mean": 46.3638726445744,
+      "due_days_p10": 14.0,
+      "due_days_p90": 181.0
+    }
+  },
+  "exp5": {
+    "baseline_peak": 633.4698318677579,
+    "mc_mean": 808.1666982971841,
+    "mc_sd": 643.3651120889393
+  },
+  "exp6": {
+    "total_full": 1837,
+    "total_silo": 236,
+    "total_direct": 249,
+    "convergence_multiplier": 7.783898305084746,
+    "p_value": 1.0,
+    "block_null_mean_ratio": 10.839518961608585,
+    "block_null_median_ratio": 10.656257822277848,
+    "block_null_p_value": 0.95
+  },
+  "exp6a": {
+    "cyber_peak_lam0": 2067.828804187513,
+    "cyber_peak_lam1": 2273.088708461351,
+    "cyber_delta_pct": 9.926349021648734,
+    "cyber_d": 0.22714834364070013,
+    "cyber_p": 0.0003447658029618446,
+    "cbrn_peak_lam0": 633.4698318677579,
+    "cbrn_peak_lam1": 734.1837307591652,
+    "cbrn_delta_pct": 15.898767995700258,
+    "cbrn_d": 0.17250160808780785,
+    "cbrn_p": 0.006493801086974484,
+    "coupling_stress": {
+      "n": 200,
+      "cyber_mean_delta_pct": 10.75246937082809,
+      "cyber_q05_delta_pct": 6.707187867449934,
+      "cyber_q95_delta_pct": 14.969285636841727,
+      "cbrn_mean_delta_pct": 14.812847080440365,
+      "cbrn_q05_delta_pct": 8.00952029781629,
+      "cbrn_q95_delta_pct": 22.002010392393696,
+      "cyber_all_positive": true,
+      "cbrn_all_positive": true,
+      "cyber_rho_overload": 0.9970359258981476,
+      "cbrn_rho_amplify": 0.8529708242706069,
+      "cbrn_rho_overload": 0.49920348008700227
+    }
+  },
+  "exp7": {
+    "Ablation": {
+      "0": "(a) No delays",
+      "1": "(b) No inst. response",
+      "2": "(c) No access control",
+      "3": "(d) No social paths",
+      "4": "(e) No feedback",
+      "5": "(f) No cross-domain",
+      "6": "(g) No disinfo coupling"
+    },
+    "Delta_Cyber_Peak": {
+      "0": "-97.5%",
+      "1": "+0.9%",
+      "2": "+22.6%",
+      "3": "-92.3%",
+      "4": "-24.2%",
+      "5": "-9.0%",
+      "6": "-9.0%"
+    },
+    "Delta_CBRN_Peak": {
+      "0": "-5.0%",
+      "1": "+8.1%",
+      "2": "+509.8%",
+      "3": "-31.1%",
+      "4": "+8.1%",
+      "5": "-13.7%",
+      "6": "-13.7%"
+    },
+    "Delta_Pathways": {
+      "0": "-95.6%",
+      "1": "-95.6%",
+      "2": "-95.6%",
+      "3": "-98.9%",
+      "4": "-95.6%",
+      "5": "-98.9%",
+      "6": "-95.6%"
+    }
+  },
+  "exp8": {
+    "robustness_specs": {
+      "Specification": {
+        "0": "Original",
+        "1": "(a) Coarser",
+        "2": "(b) Finer",
+        "3": "(c) Alt. signs"
+      },
+      "LP_Stable": {
+        "0": "5/5",
+        "1": "5/5",
+        "2": "5/5",
+        "3": "5/5"
+      },
+      "Cyber_Disinfo_Delta%": {
+        "0": 9.926349021648734,
+        "1": 10.544938283295176,
+        "2": 9.355065479800889,
+        "3": 7.846789647316893
+      },
+      "CBRN_Disinfo_Delta%": {
+        "0": 15.898767995700258,
+        "1": 16.903892071274445,
+        "2": 15.072713392219942,
+        "3": 11.029901834317682
+      }
+    },
+    "confidence_pruning": {
+      "Delete_ML_Edges_Pct": {
+        "0": 25,
+        "1": 50
+      },
+      "Top5_Overlap_Mean": {
+        "0": 3.21,
+        "1": 1.99
+      },
+      "Spearman_Rho_Mean": {
+        "0": 0.8511190569516255,
+        "1": 0.739256505931819
+      },
+      "Trust_Erosion_Top10_Pct": {
+        "0": 98.0,
+        "1": 67.0
+      },
+      "Institutional_Overload_Top10_Pct": {
+        "0": 95.0,
+        "1": 83.0
+      },
+      "Path_Ratio_Mean": {
+        "0": 11.650267988031464,
+        "1": 9.785897236862532
+      }
+    }
+  }
+}

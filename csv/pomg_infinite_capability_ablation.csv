@@ -1,0 +1,3 @@
+method,violation_week_mean,violation_week_sd,violation_week_fraction_crossed,final_hazard_mean,final_hazard_sd,mean_governance_alloc
+Standard PPO,1.0,0.0,1.0,0.6074812412261963,0.015941498801112175,0.21179212629795074
+POMG-DSD + CBF + domain randomization,1.0,0.0,1.0,0.6129159331321716,0.01981499418616295,0.17250651121139526

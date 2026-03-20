@@ -1,0 +1,11 @@
+Rank,Node,Betweenness,Eigenvector,Meadows
+1,Trust_Erosion,0.2220059700842131,0.18551784453243123,4: Self-organization
+2,Institutional_Overload,0.18873881970999337,0.20090020479812068,6: Information flows
+3,Disinformation_Volume,0.1664664836421871,0.10000920473628648,8: Pos. feedback strength
+4,Epistemic_Trust,0.15069587432319076,0.13086528525020866,4: Self-organization
+5,Institutional_Credibility,0.13045641729581334,0.053788646055452985,N/A
+6,Incident_Burden,0.12658239914588576,0.13697883283889412,10: Stock buffer
+7,Institutional_Trust_Gov,0.08935897854909523,0.19636234481091763,4: Self-organization
+8,Incident_Rate,0.08413025242126135,0.1020797371495891,N/A
+9,Defender_Capacity,0.08216600756065412,0.21455933066683905,6: Information flows
+10,Governance_Gap,0.08003943741761176,0.2026952117653942,6: Information flows
