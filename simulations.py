@@ -2,6 +2,8 @@
 simulations.py - Stock-and-flow ODE models for cyber and CBRN domains.
 Implements exact equations from the paper Sections 3.4 and Appendix B.
 """
+import warnings
+
 import numpy as np
 from scipy.integrate import solve_ivp
 from scipy.stats import spearmanr
@@ -189,6 +191,8 @@ def run_cbrn_sim(params=None, ic=None, T=52, lambda_disinfo=0.0, couplings=None)
 def monte_carlo_cyber(N=1000, lambda_disinfo=0.0):
     """Run N Monte Carlo simulations with uniform parameter sampling."""
     results = []
+    failures = 0
+    last_error: Exception | None = None
     rng = np.random.default_rng(42)
     for _ in range(N):
         params = {}
@@ -199,14 +203,26 @@ def monte_carlo_cyber(N=1000, lambda_disinfo=0.0):
             results.append(dict(peak=r['peak'], t_peak=r['t_peak'],
                                t_ctrl=r['t_ctrl'], cum_harm=r['cum_harm'],
                                **params))
-        except Exception:
+        except Exception as exc:
+            failures += 1
+            last_error = exc
             continue
+    if failures:
+        warnings.warn(
+            f"Cyber Monte Carlo dropped {failures}/{N} failed runs; inspect parameter ranges if this is frequent.",
+            RuntimeWarning,
+            stacklevel=2,
+        )
+    if not results:
+        raise RuntimeError("Cyber Monte Carlo produced no successful runs.") from last_error
     return results
 
 
 def monte_carlo_cbrn(N=1000, lambda_disinfo=0.0):
     """Run N Monte Carlo simulations for CBRN."""
     results = []
+    failures = 0
+    last_error: Exception | None = None
     rng = np.random.default_rng(42)
     for _ in range(N):
         params = {}
@@ -217,8 +233,18 @@ def monte_carlo_cbrn(N=1000, lambda_disinfo=0.0):
             results.append(dict(peak=r['peak'], t_peak=r['t_peak'],
                                t_ctrl=r['t_ctrl'], cum_risk=r['cum_risk'],
                                **params))
-        except Exception:
+        except Exception as exc:
+            failures += 1
+            last_error = exc
             continue
+    if failures:
+        warnings.warn(
+            f"CBRN Monte Carlo dropped {failures}/{N} failed runs; inspect parameter ranges if this is frequent.",
+            RuntimeWarning,
+            stacklevel=2,
+        )
+    if not results:
+        raise RuntimeError("CBRN Monte Carlo produced no successful runs.") from last_error
     return results
 
 

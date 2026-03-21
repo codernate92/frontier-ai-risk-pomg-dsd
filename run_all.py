@@ -52,6 +52,24 @@ def cohens_d(x, y):
     return (np.mean(x) - np.mean(y)) / max(pooled, 1e-10)
 
 
+def safe_wilcoxon_greater(x, y):
+    """Return a conservative one-sided Wilcoxon p-value.
+
+    SciPy raises on degenerate inputs such as all-zero differences. Those
+    cases should not be converted into artificial significance.
+    """
+    try:
+        _stat, pval = stats.wilcoxon(x, y, alternative='greater')
+        return pval
+    except ValueError as exc:
+        warnings.warn(
+            f"Wilcoxon test fell back to p=1.0 for degenerate input: {exc}",
+            RuntimeWarning,
+            stacklevel=2,
+        )
+        return 1.0
+
+
 def load_cisa_kev_anchors():
     """Load simple empirical anchors from the local CISA KEV feed if present."""
     kev_path = os.path.join(os.path.dirname(__file__), 'known_exploited_vulnerabilities.json')
@@ -146,10 +164,7 @@ for m in methods[:-1]:
     ps = {}
     for metric in ['cov', 'xd', 'loops', 'lp', 'comp']:
         a, b = exp1_data['Full systems'][metric], exp1_data[m][metric]
-        try:
-            _, pval = stats.wilcoxon(a, b, alternative='greater')
-        except Exception:
-            pval = 0.001
+        pval = safe_wilcoxon_greater(a, b)
         ps[metric] = pval
     exp1_wilcoxon[m] = ps
 
@@ -353,12 +368,12 @@ for dn in domain_names + ['supergraph']:
             largest_scc = max(nx.strongly_connected_components(G), key=len)
             sub = G.subgraph(largest_scc)
             diam = nx.diameter(sub) if len(largest_scc) > 1 else 0
-    except Exception:
+    except nx.NetworkXException:
         diam = 0
     try:
         avg_path = nx.average_shortest_path_length(G.subgraph(
             max(nx.strongly_connected_components(G), key=len)))
-    except Exception:
+    except nx.NetworkXException:
         avg_path = 0
 
     if n_nodes < 50:  # skip supergraph for cycle enumeration (too large)
@@ -792,7 +807,7 @@ for _ in range(2000):
     ps = reachability_count(make_silo_graph(G_perm, graphs), endpoints)
     if ps > 0:
         null_ratios.append(pf / ps)
-p_value_conv = np.mean(np.array(null_ratios) >= obs_ratio) if null_ratios else 0.001
+p_value_conv = np.mean(np.array(null_ratios) >= obs_ratio) if null_ratios else 1.0
 if p_value_conv == 0:
     p_value_conv = 1.0 / (len(null_ratios) + 1)  # conservative bound
 print(f"  Permutation p-value: {p_value_conv:.4f}")
@@ -1107,7 +1122,7 @@ def count_ablation_paths(ablation_name):
             try:
                 if nx.has_path(G, s, t):
                     count += 1
-            except:
+            except nx.NetworkXException:
                 pass
     return count
 
