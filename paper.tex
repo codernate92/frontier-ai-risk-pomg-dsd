@@ -123,15 +123,20 @@ Pearl's structural causal model framework \citep{pearl2009} provides the formal 
 
 Bayesian network approaches to risk assessment \citep{fenton2012} similarly require quantitative parameterization that is premature for frontier AI risk. Our stock-and-flow models occupy a middle ground: they require parameter ranges (derived from published red-teaming results and safety evaluations) but represent uncertainty through sensitivity sweeps and Monte Carlo analysis rather than point estimates. Recent graph neural network and knowledge graph work \citep{schlichtkrull2018} could automate portions of CLD construction but does not address dynamic simulation and feedback analysis.
 
-\subsection{AI Safety Evaluation Frameworks}
+\subsection{Risk Management Frameworks}
+TODO: NIST AI RMF \citep{nist2023rmf}. ????? GPAI Code of Practice, ISO 42001, etc. 
 
-The current generation of frontier AI safety frameworks includes Anthropic's RSP \citep{anthropic2024rsp}, OpenAI's Preparedness Framework \citep{openai2023preparedness}, DeepMind's Frontier Safety Framework \citep{deepmind2024fsf}, and the NIST AI RMF \citep{nist2023rmf}. The International AI Safety Report \citep{iaisr2025} synthesizes findings but does not formally model cross-domain interactions.
+\subsection{Frontier Safety Frameworks}
+
+The current generation of frontier AI safety frameworks includes Anthropic's Responsible Scaling Policy (RSP) \citep{anthropic2024rsp}, OpenAI's Preparedness Framework \citep{openai2023preparedness}, DeepMind's Frontier Safety Framework \citep{deepmind2024fsf}. 
 
 All these frameworks share a structural property: they evaluate risk categories independently. The RSP assesses cyber and CBRN risk through separate pipelines. The Preparedness Framework produces independent scores per axis. This is precisely the gap our work addresses: to our knowledge, no prior work provides a reproducible systems pipeline for exploring whether siloed risk models may miss convergent catastrophic pathways.
 
-\subsection{Computational Approaches to AI Risk}
+\subsection{Computational Approaches to AI Risk Assessment}
 
-Recent work has explored structured AI safety evaluation and formal graphical risk modeling. Shevlane et al.\ \citep{shevlane2023} proposed structured evaluations for dangerous capabilities. Weidinger et al.\ \citep{weidinger2023} developed a sociotechnical approach emphasizing context-dependent risk. Barrett and Baum \citep{barrett2023} used fault trees and influence diagrams to model pathways to AI catastrophe. More recently, the UK AI Security Institute's \texttt{Inspect} runtime has made it easier to express executable safety and agent-evaluation tasks as reusable artifacts \citep{ukaisi2026inspect}. Our contribution is distinct: we provide a full pipeline from qualitative structure through dynamic simulation to stress testing of convergence, while explicitly separating internal model diagnostics from external empirical validation.
+Recent work has explored structured methods for quantifying AI safety risks. Wisakanto et al.\ \citep{wisakanto2025adaptingprobabilisticriskassessment} adapt probabilistic risk assessment (PRA) techniques from high-reliability industries (nuclear, aerospace) to AI, introducing aspect-oriented hazard analysis, risk pathway modeling through causal chains, and uncertainty management via scenario decomposition and reference scales, implemented as a workbook tool for developers and regulators. Murray et al.\ \citep{murray2025methodologyquantitativeairisk} propose a six-step quantitative risk modeling methodology that decomposes risk scenarios into quantifiable parameters, estimates baseline risk without AI, identifies key risk indicators from benchmarks, and aggregates them via Monte Carlo simulation into concrete probabilistic claims. Barrett et al.\ \citep{barrett2025quantitativemodelingcybersecurityrisks} apply that methodology to AI-enabled cyber offense, developing nine detailed risk models using the MITRE ATT\&CK framework with Delphi-elicited and LLM-simulated expert estimates of AI uplift. Jackson et al.\ \citep{jackson2026riskthresholdsaienabledcyber} propose Bayesian networks as a tool for operationalizing AI cyber risk thresholds, demonstrating through an AI-augmented phishing case study how qualitative threat descriptions can be decomposed into measurable probabilistic variables. Barrett and Baum \citep{barrett2023} earlier used fault trees and influence diagrams to model pathways to AI catastrophe.
+
+These approaches share a common property: they model individual risk domains (cyber, CBRN, manipulation) as separate assessment targets with independent causal chains. Our contribution is distinct in that we model the coupling between risk domains through shared sociotechnical stocks (trust erosion, institutional overload, detection degradation), providing a full pipeline from qualitative causal structure through dynamic simulation to cross-domain convergence stress testing.
 
 \subsection{Alternative Modeling Traditions for Frontier-AI Risk Assessment}
 
@@ -1084,11 +1089,27 @@ Anthropic.
 \textit{Responsible Scaling Policy}, version 3.0, effective February 24, 2026.
 Available at \url{https://www.anthropic.com/responsible-scaling-policy}.
 
+% Question: why is it called barrett2023 when it was published back in 2017?
 \bibitem[Barrett and Baum(2017)]{barrett2023}
 Anthony M.~Barrett and Seth D.~Baum.
 A model of pathways to artificial superintelligence catastrophe for risk and decision analysis.
 \textit{Journal of Experimental \& Theoretical Artificial Intelligence}, 29(2):397--414, 2017.
 \url{https://doi.org/10.1080/0952813X.2016.1186228}.
+
+\bibitem[Barrett et~al.(2025)]{barrett2025quantitativemodelingcybersecurityrisks}
+Steve Barrett, Malcolm Murray, Otter Quarks, Matthew Smith, Jakub Kryś, Siméon Campos, Alejandro Tlaie Boria, Chloé Touzet, Sevan Hayrapet, Fred Heiding, Omer Nevo, Adam Swanda, Jair Aguirre, Asher Brass Gershovich, Eric Clay, Ryan Fetterman, Mario Fritz, Marc Juarez, Vasilios Mavroudis, and Henry Papadatos.
+\textit{Toward Quantitative Modeling of Cybersecurity Risks Due to AI Misuse}, 2025.
+\url{https://arxiv.org/abs/2512.08864}.
+
+% @misc{barrett2025quantitativemodelingcybersecurityrisks,
+%       title={Toward Quantitative Modeling of Cybersecurity Risks Due to AI Misuse}, 
+%       author={Steve Barrett and Malcolm Murray and Otter Quarks and Matthew Smith and Jakub Kryś and Siméon Campos and Alejandro Tlaie Boria and Chloé Touzet and Sevan Hayrapet and Fred Heiding and Omer Nevo and Adam Swanda and Jair Aguirre and Asher Brass Gershovich and Eric Clay and Ryan Fetterman and Mario Fritz and Marc Juarez and Vasilios Mavroudis and Henry Papadatos},
+%       year={2025},
+%       eprint={2512.08864},
+%       archivePrefix={arXiv},
+%       primaryClass={cs.CY},
+%       url={https://arxiv.org/abs/2512.08864}, 
+% }
 
 \bibitem[Bonabeau(2002)]{bonabeau2002}
 Eric Bonabeau.
@@ -1124,6 +1145,21 @@ Department for Science, Innovation and Technology and AI Safety Institute.
 \textit{International AI Safety Report 2025}.
 January 29, 2025.
 Available at \url{https://www.gov.uk/government/publications/international-ai-safety-report-2025}.
+
+\bibitem[Jackson et~al.(2026)]{jackson2026riskthresholdsaienabledcyber}
+Krystal Jackson, Deepika Raman, Jessica Newman, Nada Madkour, Charlotte Yuan, and Evan R. Murphy.
+\textit{Toward Risk Thresholds for AI-Enabled Cyber Threats: Enhancing Decision-Making Under Uncertainty with Bayesian Networks}, 2026.
+Available at \url{https://arxiv.org/abs/2601.17225}.
+
+% @misc{jackson2026riskthresholdsaienabledcyber,
+%       title={Toward Risk Thresholds for AI-Enabled Cyber Threats: Enhancing Decision-Making Under Uncertainty with Bayesian Networks}, 
+%       author={Krystal Jackson and Deepika Raman and Jessica Newman and Nada Madkour and Charlotte Yuan and Evan R. Murphy},
+%       year={2026},
+%       eprint={2601.17225},
+%       archivePrefix={arXiv},
+%       primaryClass={cs.CR},
+%       url={https://arxiv.org/abs/2601.17225}, 
+% }
 
 \bibitem[UK AI Security Institute(2026)]{ukaisi2026inspect}
 UK AI Security Institute.
@@ -1166,6 +1202,21 @@ George E.~Monahan.
 A survey of partially observable Markov decision processes: Theory, models, and algorithms.
 \textit{Management Science}, 28(1):1--16, 1982.
 \url{https://doi.org/10.1287/mnsc.28.1.1}.
+
+\bibitem[Murray et~al.(2025)]{murray2025methodologyquantitativeairisk}
+Malcolm Murray, Steve Barrett, Henry Papadatos, Otter Quarks, Matt Smith, Alejandro Tlaie Boria, Chloé Touzet, and Siméon Campos.
+\textit{A Methodology for Quantitative AI Risk Modeling}, 2025.
+Available at \url{https://arxiv.org/abs/2512.08844}.
+
+% @misc{murray2025methodologyquantitativeairisk,
+%       title={A Methodology for Quantitative AI Risk Modeling}, 
+%       author={Malcolm Murray and Steve Barrett and Henry Papadatos and Otter Quarks and Matt Smith and Alejandro Tlaie Boria and Chloé Touzet and Siméon Campos},
+%       year={2025},
+%       eprint={2512.08844},
+%       archivePrefix={arXiv},
+%       primaryClass={cs.CY},
+%       url={https://arxiv.org/abs/2512.08844}, 
+% }
 
 \bibitem[NIST(2024)]{nist2023rmf}
 National Institute of Standards and Technology.
@@ -1250,6 +1301,21 @@ Laura Weidinger, Nahema Marchal, Maribeth Rauh, Arianna Manzini, Lisa Anne Hendr
 Sociotechnical safety evaluation of generative AI systems.
 \textit{arXiv preprint arXiv:2310.11986}, 2023.
 Available at \url{https://deepmind.google/research/publications/sociotechnical-safety-evaluation-of-generative-ai-systems/}.
+
+\bibitem[Wisakanto et~al.(2025)]{wisakanto2025adaptingprobabilisticriskassessment}
+Anna Katariina Wisakanto, Joe Rogero, Avyay M. Casheekar, and Richard Mallah.
+\textit{Adapting Probabilistic Risk Assessment for AI}, 2025.
+Available at \url{https://arxiv.org/abs/2504.18536}.
+
+% @misc{wisakanto2025adaptingprobabilisticriskassessment,
+%       title={Adapting Probabilistic Risk Assessment for AI}, 
+%       author={Anna Katariina Wisakanto and Joe Rogero and Avyay M. Casheekar and Richard Mallah},
+%       year={2025},
+%       eprint={2504.18536},
+%       archivePrefix={arXiv},
+%       primaryClass={cs.AI},
+%       url={https://arxiv.org/abs/2504.18536}, 
+% }
 
 \end{thebibliography}
 
