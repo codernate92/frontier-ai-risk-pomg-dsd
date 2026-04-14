@@ -123,14 +123,15 @@ Pearl's structural causal model framework \citep{pearl2009} provides the formal 
 
 Bayesian network approaches to risk assessment \citep{fenton2012} similarly require quantitative parameterization that is premature for frontier AI risk. Our stock-and-flow models occupy a middle ground: they require parameter ranges (derived from published red-teaming results and safety evaluations) but represent uncertainty through sensitivity sweeps and Monte Carlo analysis rather than point estimates. Recent graph neural network and knowledge graph work \citep{schlichtkrull2018} could automate portions of CLD construction but does not address dynamic simulation and feedback analysis.
 
-\subsection{Risk Management Frameworks}
-TODO: NIST AI RMF \citep{nist2023rmf}. ????? GPAI Code of Practice, ISO 42001, etc. 
+\subsection{Institutional Risk Management Frameworks}
 
-\subsection{Frontier Safety Frameworks}
+Process-oriented governance standards address AI risk through taxonomic categorization and lifecycle processes. The NIST AI Risk Management Framework \citep{nist2023rmf} organizes the process into four functions (Govern, Map, Measure, Manage), while its generative AI companion profile (NIST AI 600-1) enumerates twelve risk categories, including CBRN information, confabulation, information security, and harmful bias, with suggested actions for each. ISO/IEC 42001 \citep{iso42001} is the first internationally certifiable AI management system standard, requiring organizations to conduct AI-specific risk assessments and impact evaluations across 38 controls, though it leaves the choice of risk categories to the implementing organization. The European Union's (EU) General-Purpose AI Code of Practice \citep{gpai-code-2025} establishes a voluntary compliance pathway under the EU AI Act. Its Safety and Security chapter, applicable to providers of general-purpose AI models with systemic risk, mandates assessment of four specified risk types---CBRN, cyber offence, loss of control, and harmful manipulation---plus any additional model-specific systemic risks. These frameworks define the organizational processes through which risk is identified, assessed, and mitigated, but they do not prescribe how the assessment itself should be conducted, nor how risks in one category interact with or amplify risks in another. Our work operates at that lower level of abstraction, where we propose a concrete methodology for the risk assessment step that these frameworks require, while accounting for cross-domain interaction.
 
-The current generation of frontier AI safety frameworks includes Anthropic's Responsible Scaling Policy (RSP) \citep{anthropic2024rsp}, OpenAI's Preparedness Framework \citep{openai2023preparedness}, DeepMind's Frontier Safety Framework \citep{deepmind2024fsf}. 
+\subsection{Model Developer Frontier Safety Policies}
 
-All these frameworks share a structural property: they evaluate risk categories independently. The RSP assesses cyber and CBRN risk through separate pipelines. The Preparedness Framework produces independent scores per axis. This is precisely the gap our work addresses: to our knowledge, no prior work provides a reproducible systems pipeline for exploring whether siloed risk models may miss convergent catastrophic pathways.
+The current generation of frontier AI safety policies includes Anthropic's Responsible Scaling Policy (RSP) \citep{anthropic2024rsp}, OpenAI's Preparedness Framework \citep{openai2023preparedness}, and Google DeepMind's Frontier Safety Framework \citep{deepmind2024fsf}, among others.
+
+These frameworks share a common structural property with the governance standards discussed above: they assess each risk category through its own pipeline without modeling interactions between categories. The RSP evaluates cyber, CBRN, and autonomy risks through separate assessment tracks. The Preparedness Framework produces independent scores per axis. The Frontier Safety Framework specifies critical capability levels domain by domain. This is precisely the gap our work addresses: to our knowledge, none of them provides a mechanism for representing how outcomes in one risk domain may propagate to or compound outcomes in another.
 
 \subsection{Computational Approaches to AI Risk Assessment}
 
@@ -1140,11 +1141,23 @@ Jay W.~Forrester.
 MIT Press, 1961.
 Google Books record: \url{https://books.google.com/books?id=IQhPAAAAMAAJ}.
 
+\bibitem[General-Purpose AI Code of Practice(2025)]{gpai-code-2025}
+European Commission.
+\textit{The General-Purpose AI Code of Practice}.
+July 10, 2025.
+Available at \url{https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai}
+
 \bibitem[International AI Safety Report(2025)]{iaisr2025}
 Department for Science, Innovation and Technology and AI Safety Institute.
 \textit{International AI Safety Report 2025}.
 January 29, 2025.
 Available at \url{https://www.gov.uk/government/publications/international-ai-safety-report-2025}.
+
+\bibitem[ISO/IEC 42001(2023)]{iso42001}
+ISO/IEC.
+\textit{ISO/IEC 42001:2023 --- Information technology --- Artificial intelligence --- Management system}. 
+2023.
+Available at \url{https://www.iso.org/standard/81230.html}
 
 \bibitem[Jackson et~al.(2026)]{jackson2026riskthresholdsaienabledcyber}
 Krystal Jackson, Deepika Raman, Jessica Newman, Nada Madkour, Charlotte Yuan, and Evan R. Murphy.
@@ -1218,7 +1231,13 @@ Available at \url{https://arxiv.org/abs/2512.08844}.
 %       url={https://arxiv.org/abs/2512.08844}, 
 % }
 
-\bibitem[NIST(2024)]{nist2023rmf}
+\bibitem[NIST(2023)]{nist2023rmf}
+National Institute of Standards and Technology.
+\textit{Artificial Intelligence Risk Management Framework} (NIST AI 100-1).
+January 26, 2023.
+\url{https://doi.org/10.6028/NIST.AI.100-1}.
+
+\bibitem[NIST(2024)]{nist2024ai600}
 National Institute of Standards and Technology.
 \textit{Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile} (NIST AI 600-1).
 July 26, 2024.
